@@ -1,3 +1,4 @@
 {
-  "mongoUri": "mongodb+srv://az:contact@contact-0wutc.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://az:contact@contact-0wutc.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
 }
