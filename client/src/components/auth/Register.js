@@ -1,9 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+
+import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
 export const Register = () => {
+  const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
+
+  const { register, error, clearErrors } = authContext;
   const { setAlert } = alertContext;
+
+  useEffect(() => {
+    if (error === 'user already exists') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+  }, [error]);
 
   const [user, setUser] = useState({
     name: '',
@@ -23,7 +35,11 @@ export const Register = () => {
     } else if (password !== password2) {
       setAlert('Password do not match', 'danger');
     } else {
-      console.log('Register Submit');
+      register({
+        name,
+        email,
+        password
+      });
     }
   };
 
