@@ -3,8 +3,9 @@ import ContactContext from '../../context/contact/contactContext';
 
 export const ContactFilter = () => {
   const contactContext = useContext(ContactContext);
-  const { filterContacts, clearFilter, filtered } = contactContext;
   const text = useRef('');
+
+  const { filterContacts, clearFilter, filtered } = contactContext;
 
   useEffect(() => {
     if (filtered === null) {

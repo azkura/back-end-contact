@@ -3,7 +3,8 @@ import ContactContext from '../../context/contact/contactContext';
 
 export const ContactForm = () => {
   const contactContext = useContext(ContactContext);
-  const { addContact, UpdateContact, clearCurrent, current } = contactContext;
+
+  const { addContact, updateContact, clearCurrent, current } = contactContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -35,7 +36,7 @@ export const ContactForm = () => {
     if (current === null) {
       addContact(contact);
     } else {
-      UpdateContact(contact);
+      updateContact(contact);
     }
     clearAll();
   };
@@ -78,7 +79,7 @@ export const ContactForm = () => {
         checked={type === 'personal'}
         onChange={onChange}
       />{' '}
-      Personal
+      Personal{' '}
       <input
         type='radio'
         name='type'
@@ -91,9 +92,7 @@ export const ContactForm = () => {
         <input
           type='submit'
           value={current ? 'Update Contact' : 'Add Contact'}
-          className={
-            'btn btn-block ' + (current ? 'btn-danger ' : 'btn-primary')
-          }
+          className='btn btn-primary btn-block'
         />
       </div>
       {current && (
