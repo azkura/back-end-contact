@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import authContext from './authContext';
+import AuthContext from './authContext';
 import authReducer from './authReducer';
 import {
   REGISTER_SUCCESS,
@@ -16,6 +16,7 @@ import {
 const AuthState = props => {
   const initialState = {
     token: localStorage.getItem('token'),
+    user: null,
     isAuthenticated: null,
     loading: true,
     error: null
@@ -34,16 +35,17 @@ const AuthState = props => {
   // Clear errors
 
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{
         token: state.token,
+        user: state.user,
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         error: state.error
       }}
     >
       {props.children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
