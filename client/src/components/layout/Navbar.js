@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import AuthContext from '../../context/auth/authContext';
+
 export const Navbar = ({ title, icon }) => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, logout, user } = authContext;
+
+  const authLinks = (
+    <Fragment>
+      <li>Hello{user && user.name}</li>
+      <li>
+        <a href='#!'>
+          <i className='fas fa-sign-out-alt' />
+          <span className='hide-sm'>Logout</span>
+        </a>
+      </li>
+    </Fragment>
+  );
+
+  const guessLinks = (
+    <Fragment>
+      <li>
+        <Link to='/register'>Register</Link>
+      </li>
+      <li>
+        <Link to='/login'>Login</Link>
+      </li>
+    </Fragment>
+  );
+
   return (
     <div className='navbar bg-primary'>
       <h2>
         <i className={icon} /> {title}
       </h2>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/about'>About</Link>
-        </li>
-        <li>
-          <Link to='/register'>Register</Link>
-        </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-      </ul>
+      <ul>{isAuthenticated ? authLinks : guessLinks}</ul>
     </div>
   );
 };
