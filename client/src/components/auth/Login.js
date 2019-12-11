@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-
 import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
 export const Login = props => {
-  const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
 
-  const { login, error, clearErrors, isAuthenticated } = authContext;
   const { setAlert } = alertContext;
+  const { login, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -34,7 +33,7 @@ export const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     if (email === '' || password === '') {
-      setAlert('Please fill all fields', 'danger');
+      setAlert('Please fill in all fields', 'danger');
     } else {
       login({
         email,
@@ -50,23 +49,25 @@ export const Login = props => {
       </h1>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>Email Address</label>
           <input
+            id='email'
             type='email'
             name='email'
             value={email}
-            placeholder='Email'
             onChange={onChange}
+            required
           />
         </div>
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input
+            id='password'
             type='password'
             name='password'
             value={password}
-            placeholder='Password'
             onChange={onChange}
+            required
           />
         </div>
         <input

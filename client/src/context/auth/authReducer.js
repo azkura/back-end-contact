@@ -1,7 +1,6 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  USER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
@@ -37,7 +36,7 @@ export default (state, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: true,
+        loading: false,
         user: null,
         error: action.payload
       };
