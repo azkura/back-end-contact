@@ -9,6 +9,7 @@ import { Home } from './components/pages/Home';
 import { About } from './components/pages/About';
 import { Alerts } from './components/layout/Alerts';
 import { setAuthToken } from './utils/setAuthToken';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import AuthState from './context/auth/AuthState';
 import ContactState from './context/contact/ContactState';
@@ -29,10 +30,10 @@ const App = () => {
               <div className='container'>
                 <Alerts />
                 <Switch>
+                  <PrivateRoute exact path='/' component={Home} />
+                  <Route exact path='/about' component={About} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
-                  <Route exact path='/about' component={About} />
-                  <Route exact path='/' component={Home} />
                 </Switch>
               </div>
             </Fragment>
